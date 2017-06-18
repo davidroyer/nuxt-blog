@@ -1,38 +1,88 @@
 <template>
   <div>
-    <header class="container">
-      <h1 class="siteTitle m--1 g--4">NuxtFire</h1>
-      <h2 class="subtitle">Nuxt + Firebae = SSR or Static Site</h2>
+    <header class="container bg--teal">
+      <h1 class="siteTitle m--1 g--4" @click="$router.push('/')">NuxtFire</h1>
+      <!-- <h2 class="subtitle">Nuxt + Firebae = SSR or Static Site</h2> -->
     </header>
     <nuxt/>
   </div>
 </template>
 
 <style lang="scss">
+
 body {
   display: block;
+  // background: url('~static/blog-svg.svg') repeat-y 50% 0;
+  // background-size: 100vw;
 }
 
+.siteTitle {
+  width: 100%;
+  font-weight: 900;
+  cursor: pointer;
+}
+.container {
+  padding: 1em 1.5em;
+
+  @media (min-width: 901px) {
+    padding: 1em 4em;
+  }
+}
+
+.backNavigation {
+  // background: #4d4d4d;
+  background: #4d4d4d;
+  border-radius: 50%;
+  padding: .25em;
+  width: 42px;
+  height: 42px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.12), 0 2px 10px 0 rgba(0, 0, 0, 0.32);
+  position: fixed;
+  bottom: 20px;
+  z-index: 9999;
+  svg {
+    fill: white;
+  }
+}
 header {
   display: flex;
   flex-direction: column;
-  padding: 2em 1.5em;
-  // padding-left: 1.5em;
+  position: relative;
+  margin-bottom: 0;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.12), 0 2px 10px 0 rgba(0, 0, 0, 0.09);
 
   @media (min-width: 901px) {
-    padding: 2em 4em;
+    padding: 1em 1.5em !important;
   }
+  padding-left: 1em 4em;
+
+  // &:before {
+  //   content: '';
+  //   position: absolute;
+  //   left: 0;
+  //   right: 0;
+  //   top: 0;
+  //   height: 100vw;
+  //   // background: url(//firebase.google.com/images/backslant-sub-top.svg) no-repeat 50% 0/100%;
+  //   background-size: 100%;
+  //   margin-top: -200px;
+  //   background: url('~static/blog-top-svg.svg');
+  // }
+
   .siteTitle {
     margin: 0;
     margin-bottom: .25em;
+
   }
 }
 .subtitle {
   margin-top: 0;
-  color: #515151;
-  font-weight: bold;
-  margin: 0;
-  font-size: 1.5em;
+      color: hsla(0, 0%, 14%, 0.7);
+      font-weight: bold;
+      margin: 0;
+      font-size: 1.5em;
+      font-style: normal;
+      letter-spacing: -1px;
 }
 
 html
@@ -50,6 +100,13 @@ html
 {
   box-sizing: border-box;
   margin: 0;
+}
+
+h2 {
+  font-size: 40px;
+font-weight: 300;
+font-family: Roboto;
+color: rgba(0,0,0,0.54);
 }
 
 /*.button--green
