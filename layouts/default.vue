@@ -1,22 +1,45 @@
 <template>
   <div>
     <header class="container">
-      <h1 class="m--1 g--4">NuxtFire</h1>
+      <h1 class="siteTitle m--1 g--4">NuxtFire</h1>
       <h2 class="subtitle">Nuxt + Firebae = SSR or Static Site</h2>
     </header>
     <nuxt/>
   </div>
 </template>
 
-<style>
+<style lang="scss">
 body {
   display: block;
 }
-/*html*/
-/*{
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+header {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 1.5em;
+  // padding-left: 1.5em;
+
+  @media (min-width: 901px) {
+    padding: 2em 4em;
+  }
+  .siteTitle {
+    margin: 0;
+    margin-bottom: .25em;
+  }
+}
+.subtitle {
+  margin-top: 0;
+  color: #515151;
+  font-weight: bold;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+html
+{
+  /*font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
-  word-spacing: 1px;
+  word-spacing: 1px;*/
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -28,7 +51,8 @@ body {
   box-sizing: border-box;
   margin: 0;
 }
-.button--green
+
+/*.button--green
 {
   display: inline-block;
   border-radius: 4px;

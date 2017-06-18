@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-
+<h6>{{source}}</h6>
 <i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"  @click="$router.push('/')"></i>
     <!-- <button type="button" name="button" class="btn-rasied" @click="$router.push('/')"></button> -->
     <transition name="fade" mode="out-in">
@@ -29,7 +29,7 @@ export default {
   fetch({params}) {
 
   },
-  async asyncData({route}) {
+  async asyncData({route, isClient, isServer}) {
     const slug = route.params.slug
 
     const { data } = await
@@ -44,6 +44,7 @@ export default {
      return {
        title: postData.title,
        content: marked(postData.content, { sanitize: true }),
+       source: isServer ? 'Server' : 'Client'
        // markdownFile: marked(data, { sanitize: true })
      }
   },
