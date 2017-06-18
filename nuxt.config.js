@@ -39,8 +39,8 @@ module.exports = {
         storageBucket: "nuxtfire.appspot.com",
         messagingSenderId: "355187584526"
       }
-    },
-    '@nuxtjs/font-awesome'
+    }
+    // '@nuxtjs/font-awesome'
   ],
 
   plugins: [
