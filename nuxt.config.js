@@ -44,7 +44,6 @@ module.exports = {
     { src: '~assets/css/main.scss', lang: 'scss'},
     { src: '~assets/css/scss/surface_styles.scss', lang: 'scss'},
   ],
-  router: { base: '/testnuxt/' },
   modules: [
     // '@nuxtjs/axios',
     {
