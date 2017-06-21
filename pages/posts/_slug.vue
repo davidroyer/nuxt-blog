@@ -47,10 +47,9 @@ export default {
      axios.get(`/posts.json?orderBy="slug"&equalTo="${slug}"&print=pretty`)
      var keys = Object.keys(data)
      var key = keys[0]
-     console.log(data[key]);
      var postData = data[key]
      var result = md.render(postData.content);
-    console.log(result);
+
 
      return {
        title: postData.title,
@@ -103,9 +102,10 @@ export default {
   position: relative;
 }
 .bannerImage {
-  width: 100%;
   height: 40vw;
   max-height: 700px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .postTitle {
@@ -125,6 +125,12 @@ export default {
     font-size: 1.4em;
   }
 }
+.postWrapper {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: .5em 2em 2em;
+}
 @media (min-width:581px) {
   .postTitle {
     font-size: 6vw;
@@ -132,6 +138,9 @@ export default {
 }
 
 @media (min-width: 901px) {
+  .postWrapper {
+    padding: 2em;
+  }
   .postTitle {
     font-size: 70px;
     color: white;
@@ -141,15 +150,10 @@ export default {
   }
 
   .bannerImage {
-    filter: brightness(.8) blur(2px);
+    filter: brightness(.5) blur(1px);
   }
 }
-.postWrapper {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2em;
-}
+
 .hasBackground {
   background: linear-gradient(rgba(28, 18, 18, 0.59), rgb(100, 122, 118));
   width: 80%;

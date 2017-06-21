@@ -105,9 +105,28 @@ html
 
 h2 {
   font-size: 40px;
-font-weight: 300;
-font-family: Roboto;
-color: rgba(0,0,0,0.54);
+  font-family: 'Roboto';
+  margin-bottom: .5em;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: -1px;
+  position: absolute;
+  background: rgba(41, 41, 41, 0.50);
+  color: #ffffff;
+  width: 100%;
+  left: 0;
+  box-sizing: border-box;
+  right: 0;
+  padding: .5em;
+  transition: .25s ease;
+  border-bottom: 2px solid transparent;
+  text-shadow: 2px 2px rgba(255, 0, 0, 0);
+
+  &:hover, &:focus {
+    border-bottom: 2px solid white;
+    font-weight: 500;
+    text-shadow: 2px 2px #282828;
+  }
 }
 
 /*.button--green

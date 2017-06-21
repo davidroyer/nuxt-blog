@@ -9,12 +9,16 @@
           <div class=" card g--5 g-s--12"
             :key="post.slug"
             @click="handleRoute(post.slug)">
-              <img :src="post.image ? post.image : 'https://placehold.it/680x450' " alt="">
-              <router-link :to="`/posts/${post.slug}`">
-                <h2>{{post.title}}</h2>
-              </router-link>
+            <router-link :to="`/posts/${post.slug}`">
+              <h2>{{post.title}}</h2>
+            </router-link>
+            <img :src="post.image ? post.image : 'https://placehold.it/680x450' " alt="">
 
-            <div v-html="post.content"></div>
+            <div v-if="post.categories" class="categories">
+              <span class="category" v-for="category in post.categories">{{category}}</span>
+            </div>
+
+            <!-- <div v-html="$options.filters.formatContent(post.content)"></div> -->
 
           </div>
         </template>
@@ -28,15 +32,14 @@
 import Logo from '~components/Logo.vue'
 import axios from '~plugins/axios'
 var apiFile = require('../services/api.js')
-
 var Store = apiFile.store
-console.log(Store)
+import marked from 'marked'
+
 export default {
   components: {
     Logo
   },
   async asyncData (context) {
-    // const {data} = await app.$axios.get('http://icanhazip.com')
     console.log(context);
     const {data} = await axios.get('posts.json')
     return {
@@ -51,6 +54,22 @@ export default {
     // console.log(this)
     // console.log(this.$firebase.storage())
     // this.$firebase.database().ref('modules').set('value')
+  },
+  computed: {
+  },
+  filters: {
+    formatContent: function(value) {
+
+      let html = marked(value, { sanitize: true })
+      let length = 50;
+
+      if(html.length <= length) {
+          return html;
+      }
+      else {
+          return html.substring(0, length) + '...';
+      }
+    }
   },
   methods: {
     handleUpload (event) {
@@ -106,6 +125,24 @@ export default {
   &:hover, &:focus {
     background: rgba(26, 188, 156, 0.07);
   }
+  a {
+    display: block;
+    position: relative;
+  }
+
+  img {
+    height: 380px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .categories {
+    margin-top: 1em;
+    text-align: center;
+    .category {
+      margin: 1em;
+    }
+  }
+
 }
 // .post {
 //     position: absolute;
