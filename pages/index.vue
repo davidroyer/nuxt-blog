@@ -9,7 +9,7 @@
           <div class=" card g--5 g-s--12"
             :key="post.slug"
             @click="handleRoute(post.slug)">
-              <img :src="bgImage" alt="">
+              <img :src="post.image ? post.image : 'https://placehold.it/680x450' " alt="">
               <router-link :to="`/posts/${post.slug}`">
                 <h2>{{post.title}}</h2>
               </router-link>

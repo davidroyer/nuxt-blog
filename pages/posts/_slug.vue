@@ -1,19 +1,17 @@
 <template>
-  <div class="post container">
+  <div class="postWrapper">
 
 <!-- <i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"  @click="$router.push('/')"></i> -->
     <!-- <button type="button" name="button" class="btn-rasied" @click="$router.push('/')"></button> -->
     <transition name="fade" mode="out-in">
-      <div :key="$route.params.slug">
+      <div :key="$route.params.slug" class="postInnerWrapper">
 
-        <template v-if="image">
-          <div class="bannerWrapper">
-            <h1 class="postTitle" v-html="title"></h1>
-            <img :src="image" alt="" class="bannerImage">
+          <div class="bannerWrapper" :class="{ hasBackground: !post.image }">
+            <h1 class="postTitle" v-html="post.title"></h1>
+            <img v-if="post.image" :src="post.image" alt="" class="bannerImage">
           </div>
-        </template>
-        <h1 v-else class="postTitle" v-html="title"></h1>
-        <div class="content" v-html="content"></div>
+
+          <div class="content" v-html="content"></div>
         <!-- <vue-editor v-model="post.content"></vue-editor> -->
       </div>
     </transition>
@@ -56,7 +54,8 @@ export default {
 
      return {
        title: postData.title,
-       image: './laptop-desk.jpg',
+       post: postData,
+       image: '~static/laptop-desk.jpg',
        content: marked(postData.content, { sanitize: true }),
        source: isServer ? 'Server' : 'Client'
        // markdownFile: marked(data, { sanitize: true })
@@ -144,6 +143,19 @@ export default {
   .bannerImage {
     filter: brightness(.8) blur(2px);
   }
+}
+.postWrapper {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2em;
+}
+.hasBackground {
+  background: linear-gradient(rgba(28, 18, 18, 0.59), rgb(100, 122, 118));
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  height: 35vh;
 }
 // .content > * {
 //     font-size: 1em !important;

@@ -40,6 +40,7 @@ body {
   position: fixed;
   bottom: 20px;
   z-index: 9999;
+  left: 20px;
   svg {
     fill: white;
   }

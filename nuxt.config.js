@@ -1,17 +1,35 @@
+var _ = require('lodash');
+const axios = require('axios')
+
+function slugify(input) {
+  let output = input.toLowerCase()
+   .replace(/[^\w\s-]/g, '') // remove non-word [a-z0-9_], non-whitespace, non-hyphen characters
+   .replace(/[\s_-]+/g, '-') // swap any length of whitespace, underscore, hyphen characters with a single -
+   .replace(/^-+|-+$/g, ''); // remove leading, trailing -
+  return output
+}
+
+function getSlugs(post, index) {
+  let slug = slugify(post.title)
+  return `/post/${slug}`
+}
+
+
 module.exports = {
   /*
   ** Headers of the page
   */
   head: {
-    title: 'starter',
+    title: 'NuxtFire Blog - David Royer',
+    titleTemplate: '%s - NuxtFire Blog - David Royer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+      { hid: 'description', name: 'description', content: 'Demo of NuxtFire Blog. Made by David Royer, Front-End Web Designer and Developer' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/css?family=Roboto' },
+      { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
     ]
   },
   /*
@@ -26,7 +44,7 @@ module.exports = {
     { src: '~assets/css/main.scss', lang: 'scss'},
     { src: '~assets/css/scss/surface_styles.scss', lang: 'scss'},
   ],
-  router: { base: '/testnuxt/' },
+  // router: { base: '/' },
   modules: [
     // '@nuxtjs/axios',
     {
@@ -61,5 +79,26 @@ module.exports = {
     //     })
     //   }
     // }
-  }
+  },
+  generate: {
+    routes: function() {
+      return axios.get('https://nuxtfire.firebaseio.com/posts.json')
+      .then((res) => {
+        return _.map(res.data, function(post, key) {
+          return `/posts/${post.slug}`
+        })
+
+      })
+    }
+    // routes: function() {
+    //   return postsArray.map(getSlugs)
+    //   return axios.get('/static/blog.json')
+    //   .then((res) => {
+    //     return _.map(res.data, function(post, key) {
+    //       return `/test/${post.slug}`
+    //     })
+    //
+    //   })
+    // }
+  },
 }
