@@ -1,4 +1,4 @@
-# nuxtmodules
+# Nuxt Blog
 
 > Nuxt.js project
 
