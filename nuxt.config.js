@@ -29,7 +29,8 @@ module.exports = {
     ],
     link: [
       { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/css?family=Roboto' },
-      { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+      { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
+
     ]
   },
   /*
@@ -46,6 +47,8 @@ module.exports = {
   ],
   modules: [
     // '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    // '@nuxtjs/component-cache',
     {
       src: '@rafamaciel/firebase',
       options: {
@@ -59,7 +62,11 @@ module.exports = {
     }
     // '@nuxtjs/font-awesome'
   ],
-
+  manifest: {
+    name: 'Nuxt Blog PWA',
+    description: 'Simple PWA Blog with Nuxt',
+    theme_color: '#188269'
+  },
   plugins: [
     {src:'~plugins/test-store.js', injectAs: 'testStore'}
   ],

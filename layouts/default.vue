@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="container bg--teal">
-      <h1 class="siteTitle m--1 g--4" @click="$router.push('/')">NuxtFire</h1>
+      <h1 class="siteTitle m--1 g--4" @click="$router.push('/')">NuxtBlog</h1>
       <!-- <h2 class="subtitle">Nuxt + Firebae = SSR or Static Site</h2> -->
     </header>
     <nuxt/>
